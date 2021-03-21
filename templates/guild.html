@@ -1,0 +1,9 @@
+{% block content %}
+<h1>Your Server Page</h1>
+<p>This is the Server Page</p>
+{% for user in user_ranking %}
+    <span>{{ user.0 }}</span>
+
+{% endfor %}
+
+{% endblock content %}

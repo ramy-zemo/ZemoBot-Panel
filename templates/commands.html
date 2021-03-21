@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row">
+        <!-- /# column -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Command hinzufügen</h4>
+                </div>
+                <div class="card-body">
+                    <div class="basic-form">
+                        <form action="/commands/add-command/" method="post">
+                            {% csrf_token %}
+                            {{ form_add_command }}
+                            <br><input class="btn btn-default" type="submit" value="Add Command">
+
+                        </form>
+                        {% if messages %}
+                            <br>
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    {% if "add_command" in message.tags %}
+                                    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> <span class="text-success">{{ message }}</span></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Command entfernen</h4>
+                </div>
+                <div class="card-body">
+                    <div class="basic-form">
+                        <form action="/commands/delete-command/" method="post">
+                            {% csrf_token %}
+                            {{ form_delete_command }}
+                            <br><input class="btn btn-default" type="submit" value="Delete Command">
+
+                        </form>
+                        {% if messages %}
+                            <br>
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    {% if "delete_command" in message.tags %}
+                                    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> <span class="text-success">{{ message }}</span></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- /# column -->
+                <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Admin command hinzufügen</h4>
+                </div>
+                <div class="card-body">
+                    <div class="basic-form">
+                        <form action="/commands/add-admin-command/" method="post">
+                            {% csrf_token %}
+                            {{ form_add_admin_command }}
+                            <br><input class="btn btn-default" type="submit" value="Add Admin Command">
+
+                        </form>
+                        {% if messages %}
+                            <br>
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    {% if "add_admin_command" in message.tags %}
+                                    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> <span class="text-success">{{ message }}</span></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <div class="col-lg-6">
+            <div class="card">
+                <div class="card-title">
+                    <h4>Admin command entfernen</h4>
+                </div>
+                <div class="card-body">
+                    <div class="basic-form">
+                        <form action="/commands/delete-admin-command/" method="post">
+                            {% csrf_token %}
+                            {{ form_delete_admin_command }}
+                            <br><input class="btn btn-default" type="submit" value="Add Command">
+
+                        </form>
+                        {% if messages %}
+                            <br>
+                            <ul class="messages">
+                                {% for message in messages %}
+                                    {% if "delete_admin_command" in message.tags %}
+                                    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> <span class="text-success">{{ message }}</span></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

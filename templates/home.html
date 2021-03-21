@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- Invisible Infos  -->
+    <script>
+        let context_django = {
+            all_servers: {{ all_servers }},
+            active_servers: {{ active_servers }},
+            commands: {{ commands }},
+            admin_commands_category: {{ admin_commands }},
+            level_category: {{ level_category }},
+            fun_category: {{ fun_category }},
+            games_category: {{ games_category }},
+            mod_category: {{ mod_category }},
+            media_category: {{ media_category }},
+            search_category: {{ search_category }},
+            config_category: {{ config_category }}
+        }
+    </script>
+
+    <!-- Container fluid  -->
+    <div class="container-fluid">
+        <!-- Start Page Content -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card bg-primary p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-server f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-right">
+                            <h2 class="color-white">{{ all_servers }}</h2>
+                            <p class="m-b-0">Alle Server</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-warning p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-harddrives f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-right">
+                            <h2 class="color-white">{{ active_servers }}</h2>
+                            <p class="m-b-0">Aktive Server</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-success p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-layout-tab-window f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-right">
+                            <h2 id="command_count" class="color-white">{{ commands }}</h2>
+                            <p class="m-b-0">Commands</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-danger p-20">
+                    <div class="media widget-ten">
+                        <div class="media-left meida media-middle">
+                            <span><i class="ti-location-pin f-s-40"></i></span>
+                        </div>
+                        <div class="media-body media-text-right">
+                            <h2 id="admin_command_count" class="color-white">{{ admin_commands }}</h2>
+                            <p class="m-b-0">Admin commands</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- /# column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>Alle Befehle</h4>
+                    </div>
+                    <div class="team-chart">
+                        <div id="np-Pie" style="height: 370px"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /# column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>Top User ranking List</h4>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Ranking</th>
+                                    <th>Username</th>
+                                    <th>Guild</th>
+                                    <th>Level</th>
+                                    <th>XP</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for user in ranking_data %}
+                                    <tr>
+                                        <th style="color: yellow" scope="row">{{ user.0 }}</th>
+                                        <td style="color: #11ffcc">{{ user.1 }}</td>
+                                        <td><span class="badge badge-primary">{{ user.2 }}</span></td>
+                                        <td style="color: #ed1b24" class="color-third">{{ user.3 }}</td>
+                                        <td class="color-primary">{{ user.4 }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Echart -->
+    <script src="{% static 'js/lib/echart/echarts.js' %}"></script>
+    <script src="{% static 'js/lib/echart/dashboard1-init.js' %}"></script>
+
+    <script src="{% static 'js/lib/datamap/d3.min.js' %}"></script>
+    <script src="{% static 'js/lib/datamap/topojson.js' %}"></script>
+    <script src="{% static 'js/lib/datamap/datamaps.world.min.js' %}"></script>
+    <script src="{% static 'js/lib/datamap/datamap-init.js' %}"></script>
+
+    <script src="{% static 'js/lib/weather/jquery.simpleWeather.min.js' %}"></script>
+    <script src="{% static 'js/lib/weather/weather-init.js' %}"></script>
+    <script src="{% static 'js/lib/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/lib/owl-carousel/owl.carousel-init.js' %}"></script>
+
+{% endblock %}
